@@ -25,25 +25,64 @@ class _IconStepperDemo extends State<IconStepperDemo> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('IconStepper Example'),
+          title: Text('WidgetStepper Example'),
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              NumberStepper(
-                numbers: [
-                  1,
-                  2,
-                  3,
-                  4,
-                  5,
-                  6,
+              WidgetStepper(
+                widgets: [
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Introduction'),
+                    ),
+                  ),
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Preface'),
+                    ),
+                  ),
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Contents'),
+                    ),
+                  ),
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Author'),
+                    ),
+                  ),
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Publisher'),
+                    ),
+                  ),
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Reviews'),
+                    ),
+                  ),
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Chapters'),
+                    ),
+                  )
                 ],
                 activeStepBorderColor: Colors.amber,
                 activeStepBorderPadding: 3,
                 activeStepBorderWidth: 3,
                 enableNextPreviousButtons: false,
+
+                //Make it false if you want stepper indicator to be of same size as provided widget.
+                predefinedRadius: false,
 
                 // activeStep property set to activeStep variable defined above.
                 activeStep: activeStep,
@@ -58,7 +97,7 @@ class _IconStepperDemo extends State<IconStepperDemo> {
                   });
                 },
               ),
-              // header(),
+              header(),
               Expanded(
                 child: FittedBox(
                   child: Center(

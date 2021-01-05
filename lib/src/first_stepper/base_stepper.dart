@@ -64,6 +64,9 @@ class BaseStepper extends StatefulWidget {
   /// Amount of padding on each side of the child widget.
   final double padding;
 
+  /// Decides if custom size to base indicator should be given or not.
+  final bool predefinedRadius;
+
   /// Amount of margin on each side of the step.
   final double margin;
 
@@ -99,6 +102,7 @@ class BaseStepper extends StatefulWidget {
     this.activeStepColor,
     this.activeStepBorderColor,
     this.lineColor,
+    this.predefinedRadius = true,
     this.lineLength = 50.0,
     this.lineDotRadius = 1.0,
     this.stepRadius = 24.0,
@@ -155,6 +159,7 @@ class BaseStepper extends StatefulWidget {
     this.steppingEnabled = true,
     this.padding = 5.0,
     this.margin = 1.0,
+    this.predefinedRadius = true,
     this.activeStepBorderWidth = 0.5,
     this.scrollingDisabled = false,
     this.activeStep,
@@ -251,9 +256,7 @@ class _BaseStepperState extends State<BaseStepper> {
     return widget.direction == Axis.horizontal
         ? Row(
             children: <Widget>[
-              widget.enableNextPreviousButtons
-                  ? _previousButton()
-                  : Container(),
+              widget.enableNextPreviousButtons ? _previousButton() : Container(),
               Expanded(
                 child: _stepperBuilder(),
               ),
@@ -262,9 +265,7 @@ class _BaseStepperState extends State<BaseStepper> {
           )
         : Column(
             children: <Widget>[
-              widget.enableNextPreviousButtons
-                  ? _previousButton()
-                  : Container(),
+              widget.enableNextPreviousButtons ? _previousButton() : Container(),
               Expanded(
                 child: _stepperBuilder(),
               ),
@@ -334,6 +335,7 @@ class _BaseStepperState extends State<BaseStepper> {
       activeBorderColor: widget.activeStepBorderColor,
       radius: widget.stepRadius,
       padding: widget.padding,
+      predefinedRadius: widget.predefinedRadius,
       margin: widget.margin,
       activeBorderWidth: widget.activeStepBorderWidth,
     );
@@ -360,9 +362,7 @@ class _BaseStepperState extends State<BaseStepper> {
         visualDensity: VisualDensity.compact,
         icon: widget?.previousButtonIcon ??
             Icon(
-              widget.direction == Axis.horizontal
-                  ? Icons.arrow_left
-                  : Icons.arrow_drop_up,
+              widget.direction == Axis.horizontal ? Icons.arrow_left : Icons.arrow_drop_up,
             ),
         onPressed: _goToPreviousStep,
       ),
@@ -377,9 +377,7 @@ class _BaseStepperState extends State<BaseStepper> {
         visualDensity: VisualDensity.compact,
         icon: widget?.nextButtonIcon ??
             Icon(
-              widget.direction == Axis.horizontal
-                  ? Icons.arrow_right
-                  : Icons.arrow_drop_down,
+              widget.direction == Axis.horizontal ? Icons.arrow_right : Icons.arrow_drop_down,
             ),
         onPressed: _goToNextStep,
       ),

@@ -27,6 +27,9 @@ class BaseIndicator extends StatelessWidget {
   /// Radius of this indicator.
   final double radius;
 
+  /// Decides if custom size to base indicator should be given or not.
+  final bool predefinedRadius;
+
   /// The amount of padding around each side of the child.
   final double padding;
 
@@ -40,6 +43,7 @@ class BaseIndicator extends StatelessWidget {
     this.color,
     this.activeColor,
     this.activeBorderColor,
+    this.predefinedRadius = true,
     this.radius = 24.0,
     this.padding = 5.0,
     this.margin = 1.0,
@@ -59,26 +63,35 @@ class BaseIndicator extends StatelessWidget {
                   width: activeBorderWidth,
                 )
               : null,
-          shape: BoxShape.circle,
+          shape: predefinedRadius ? BoxShape.circle : BoxShape.rectangle,
         ),
         child: InkWell(
           onTap: onPressed,
           child: OpacityAnimated(
             animationDisabled: !isSelected,
-            child: Container(
-              height: radius * 2,
-              width: radius * 2,
-              padding: EdgeInsets.all(padding),
-              decoration: BoxDecoration(
-                color: isSelected
-                    ? activeColor ?? Colors.green
-                    : color ?? Colors.grey,
-                shape: BoxShape.circle,
-              ),
-              child: Center(
-                child: child,
-              ),
-            ),
+            child: predefinedRadius
+                ? Container(
+                    height: radius * 2,
+                    width: radius * 2,
+                    padding: EdgeInsets.all(padding),
+                    decoration: BoxDecoration(
+                      color: isSelected ? activeColor ?? Colors.green : color ?? Colors.grey,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: child,
+                    ),
+                  )
+                : Container(
+                    padding: EdgeInsets.all(padding),
+                    decoration: BoxDecoration(
+                      color: isSelected ? activeColor ?? Colors.green : color ?? Colors.grey,
+                      shape: BoxShape.rectangle,
+                    ),
+                    child: Center(
+                      child: child,
+                    ),
+                  ),
           ),
         ),
       ),

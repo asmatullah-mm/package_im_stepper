@@ -24,6 +24,8 @@ Here's a list of some important changes in version: 0.1.2+7. For a complete list
 
 * __Message for the existing users:__ Do you prefer the new method or the older way to control the steppers? Please vote __[here](https://forms.gle/zsr7NBviR6bqaGRi6)!__ This message will be removed in version 0.1.3.
 
+* __Custom Widget:__ Added support for adding custom widgets as stepper indicator.
+
 ## About
 
 A growing collection of stepper and page indicator widgets.
