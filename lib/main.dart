@@ -13,11 +13,9 @@ class IconStepperDemo extends StatefulWidget {
 
 class _IconStepperDemo extends State<IconStepperDemo> {
   // THE FOLLOWING TWO VARIABLES ARE REQUIRED TO CONTROL THE STEPPER.
-  // Controls the currently active step. Can be set to any valid value i.e., a value that ranges from 0 to upperBound.
-  int activeStep = 0; // Initial step set to 5.
+  int activeStep = 5; // Initial step set to 5.
 
-  // Must be used to control the upper bound of the activeStep variable. Please see next button below the build() method!
-  int upperBound = 0;
+  int upperBound = 6; // upperBound MUST BE total number of icons minus 1.
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +29,27 @@ class _IconStepperDemo extends State<IconStepperDemo> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
+              // IconStepper(
+              //   icons: [
+              //     Icon(Icons.supervised_user_circle),
+              //     Icon(Icons.flag),
+              //     Icon(Icons.access_alarm),
+              //     Icon(Icons.supervised_user_circle),
+              //     Icon(Icons.flag),
+              //     Icon(Icons.access_alarm),
+              //     Icon(Icons.supervised_user_circle),
+              //   ],
+              //
+              //   // activeStep property set to activeStep variable defined above.
+              //   activeStep: activeStep,
+              //
+              //   // This ensures step-tapping updates the activeStep.
+              //   onStepReached: (index) {
+              //     setState(() {
+              //       activeStep = index;
+              //     });
+              //   },
+              // ),
               WidgetStepper(
                 widgets: [
                   Container(
@@ -76,19 +95,13 @@ class _IconStepperDemo extends State<IconStepperDemo> {
                     ),
                   )
                 ],
-                activeStepBorderColor: Colors.amber,
-                activeStepBorderPadding: 3,
-                activeStepBorderWidth: 3,
-                enableNextPreviousButtons: false,
-
-                //Make it false if you want stepper indicator to be of same size as provided widget.
-                predefinedRadius: false,
+                // activeStepBorderColor: Colors.amber,
+                // activeStepBorderPadding: 3,
+                // activeStepBorderWidth: 3,
+                // enableNextPreviousButtons: false,
 
                 // activeStep property set to activeStep variable defined above.
                 activeStep: activeStep,
-
-                // bound receives value from upperBound.
-                upperBound: (bound) => upperBound = bound,
 
                 // This ensures step-tapping updates the activeStep.
                 onStepReached: (index) {
@@ -96,6 +109,8 @@ class _IconStepperDemo extends State<IconStepperDemo> {
                     activeStep = index;
                   });
                 },
+                //Make it false if you want stepper indicator to be of same size as provided widget.
+                predefinedRadius: false,
               ),
               header(),
               Expanded(
